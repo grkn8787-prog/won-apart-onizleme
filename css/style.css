@@ -50,19 +50,26 @@ p{margin:0 0 1em}
 .slide.on{display:flex;animation:slin .6s ease}
 @keyframes slin{from{opacity:0}to{opacity:1}}
 .slide .container{width:100%}
-.s1{background:#0f3a63}
-.s2{background:var(--gold);color:var(--ink)}
-.s3{background:var(--green)}
-.s4{background:#0b6e76}
+.slide{background-color:#0f3a63;background-size:cover;background-position:center;background-repeat:no-repeat}
+.s1{background-image:url(../img/b1.jpg);background-position:center 60%}
+.s2{background-image:url(../img/b2.jpg);background-position:center 45%}
+.s3{background-image:url(../img/b3.jpg);background-position:center 55%}
+.s4{background-image:url(../img/b4.jpg);background-position:center 62%}
+.slide:before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(8,24,44,.90) 0%,rgba(8,24,44,.72) 42%,rgba(8,24,44,.22) 100%)}
+.slide .container{position:relative}
+@media (max-width:700px){
+  .s1{background-image:url(../img/b1-m.jpg)}.s2{background-image:url(../img/b2-m.jpg)}.s3{background-image:url(../img/b3-m.jpg)}.s4{background-image:url(../img/b4-m.jpg)}
+  .slide:before{background:linear-gradient(180deg,rgba(8,24,44,.80) 0%,rgba(8,24,44,.70) 100%)}
+}
 .sl-tag{display:inline-block;font-weight:800;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:5px 12px;border-radius:3px;margin-bottom:16px}
-.s2 .sl-tag{background:rgba(0,0,0,.12)}
+
 .sl-t{font-size:3.5rem;font-weight:800;line-height:1.08;margin:0 0 14px;color:inherit;max-width:760px}
 .sl-t .mk{background:var(--gold);color:var(--ink);padding:0 .18em;border-radius:3px}
-.s2 .sl-t .mk{background:var(--ink);color:var(--gold)}
+
 .sl-p{font-size:1.25rem;max-width:620px;margin:0 0 24px;opacity:.95}
 .sl-btns .btn{margin:0 12px 12px 0;font-size:1.1rem;padding:16px 28px}
 .sl-btns .btn-gold{box-shadow:0 0 0 0 rgba(245,165,36,.6);animation:pulse 2.2s infinite}
-.s2 .sl-btns .btn-gold{background:var(--ink);color:var(--gold);animation:none}
+
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(245,165,36,.55)}70%{box-shadow:0 0 0 16px rgba(245,165,36,0)}100%{box-shadow:0 0 0 0 rgba(245,165,36,0)}}
 .sl-nav{position:absolute;top:50%;margin-top:-26px;width:52px;height:52px;border:0;border-radius:50%;background:rgba(0,0,0,.35);color:#fff;font-size:1.8rem;line-height:1;cursor:pointer;z-index:3}
 .sl-nav:hover{background:rgba(0,0,0,.6)}
@@ -181,6 +188,7 @@ p{margin:0 0 1em}
 .foot-in>div{flex:1 1 0;padding-right:24px}
 .foot-brand{font:800 1.5rem "Source Sans 3",sans-serif;color:#fff;letter-spacing:.06em;margin-bottom:.3em}
 .foot-h{font-weight:800;color:#fff;margin-bottom:.6em}
+.foot-foto{font-size:.78rem;color:#7f97b0;margin:6px 0 0}.foot-foto a{color:#9fc4e6}
 .foot-alt{border-top:1px solid #1c3a5a;margin-top:24px;padding-top:14px;font-size:.84rem;color:#7f97b0}
 
 /* yüzen WhatsApp düğmesi (bilgisayarda) */
