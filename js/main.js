@@ -64,3 +64,50 @@
     linkler[j].addEventListener('click', function () { olay(this.getAttribute('data-olay')); });
   }
 })();
+
+/* Dönen banner */
+(function () {
+  var b = document.querySelector('.banner');
+  if (!b) return;
+  var slides = b.querySelectorAll('.slide');
+  var dotsBox = b.querySelector('.dots');
+  var idx = 0, timer = null, i;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dots = [];
+  for (i = 0; i < slides.length; i++) {
+    (function (n) {
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', (n + 1) + '. duyuru');
+      d.addEventListener('click', function () { go(n); restart(); });
+      dotsBox.appendChild(d); dots.push(d);
+    })(i);
+  }
+  function go(n) {
+    idx = (n + slides.length) % slides.length;
+    for (var k = 0; k < slides.length; k++) {
+      slides[k].className = slides[k].className.replace(/\bon\b/g, '').replace(/\s+$/, '');
+      dots[k].className = '';
+    }
+    slides[idx].className += ' on';
+    dots[idx].className = 'on';
+  }
+  function restart() {
+    if (timer) clearInterval(timer);
+    if (!reduce) timer = setInterval(function () { go(idx + 1); }, 6500);
+  }
+  var prev = b.querySelector('.sl-prev'), next = b.querySelector('.sl-next');
+  if (prev) prev.addEventListener('click', function () { go(idx - 1); restart(); });
+  if (next) next.addEventListener('click', function () { go(idx + 1); restart(); });
+  b.addEventListener('mouseenter', function () { if (timer) clearInterval(timer); });
+  b.addEventListener('mouseleave', restart);
+  var x0 = null;
+  b.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  b.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { go(idx + (dx < 0 ? 1 : -1)); restart(); }
+    x0 = null;
+  }, { passive: true });
+  go(0); restart();
+})();
